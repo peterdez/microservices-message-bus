@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  users:
+    container_name: users
+    build: users/.
+    restart: on-failure
+    env_file: users/.env
+    environment:
+      APP_NAME: users
+    tty: true
+    stdin_open: true
+
+  notifications:
+    container_name: notifications
+    build: notifications/.
+    restart: on-failure
+    env_file: notifications/.env
+    environment:
+      APP_NAME: notifications
+    tty: true
+    stdin_open: true
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:management
+    ports:
+      - 15672:15672
+      - 5672:5672
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
