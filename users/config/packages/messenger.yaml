@@ -10,4 +10,4 @@ framework:
 
         routing:
             # Route your messages to the transports
-            # 'App\Message\UserCreate': async
+            'App\Message\UserCreate': async
